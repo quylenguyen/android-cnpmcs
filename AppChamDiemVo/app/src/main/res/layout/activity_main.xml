@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="User Login"
+            android:text="Giám Khảo Đăng Nhập"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal" />
 
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Enter email"
+            android:hint="Nhập vào email"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Enter password"
+            android:hint="Nhập vào mật khẩu"
             android:inputType="textPassword" />
 
         <Button
@@ -45,22 +45,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Signup" />
+            android:text="Đăng Nhập" />
 
-        <ProgressBar
-            android:id="@+id/progressbar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:max="100"
-            android:backgroundTint="@color/colorPrimary"
-            android:layout_below="@+id/framelauout"
-            android:indeterminateTint="#1a09d6"
-            android:layout_marginTop="-7dp"/>
+        <!--<ProgressBar-->
+            <!--android:id="@+id/progressbar"-->
+            <!--style="?android:attr/progressBarStyleHorizontal"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:indeterminate="true"-->
+            <!--android:max="100"-->
+            <!--android:backgroundTint="@color/colorPrimary"-->
+            <!--android:layout_below="@+id/framelauout"-->
+            <!--android:indeterminateTint="#1a09d6"-->
+            <!--android:layout_marginTop="-7dp"/>-->
 
         <TextView
-            android:text="Not have an account? Signup Here"
+            android:text=""
             android:id="@+id/textViewSignUp"
             android:textAlignment="center"
             android:layout_margin="15dp"

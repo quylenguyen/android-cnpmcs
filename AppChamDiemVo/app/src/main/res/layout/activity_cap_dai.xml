@@ -50,11 +50,18 @@
         android:textAlignment="center" />
 
     <ListView
+<<<<<<< HEAD
         android:id="@+id/listViewCapDais"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"></ListView>
+=======
+        android:id="@+id/listViewArtists"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"></ListView>
+>>>>>>> acd9577e081bac04b6ee8ba53eea71855c93b3fe
 
 </RelativeLayout>

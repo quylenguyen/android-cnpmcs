@@ -26,8 +26,12 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".ProfileActivity" />
+<<<<<<< HEAD
         <activity android:name=".CapDaiActivity" />
         <activity android:name=".HinhThucThiActivity"></activity>
+=======
+        <activity android:name=".CapDaiActivity"></activity>
+>>>>>>> acd9577e081bac04b6ee8ba53eea71855c93b3fe
     </application>
 
 </manifest>

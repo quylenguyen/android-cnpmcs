@@ -7,11 +7,18 @@
     <string name="action_sign_in">Đăng nhập</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_register">Đăng ký</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid_email">Địa chỉ email này khong đúng định dạng</string>
+    <string name="error_invalid_password">Mật khẩu quá ngắn</string>
+    <string name="error_incorrect_password">Mật khẩu không đúng</string>
+    <string name="error_field_required">Bạn phải điền thông tin vào đây</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <array name="genres">
+        <item name="rock">Rock</item>
+        <item name="pop">Pop</item>
+        <item name="jazz">Jazz</item>
+        <item name="sufi">Sufi</item>
+        <item name="folk">Folk</item>
+    </array>
 </resources>

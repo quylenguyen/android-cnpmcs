@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.AdapterView;
+=======
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -13,18 +16,26 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+=======
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HinhThucThiActivity extends AppCompatActivity {
+<<<<<<< HEAD
     public static final String HINH_THUC_THI_ID = "httid";
     public static final String TEN_HINH_THUC_THI = "tenhttt";
+=======
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 
     Button buttonAddTrack;
     EditText editTextTrackName;
@@ -57,10 +68,14 @@ public class HinhThucThiActivity extends AppCompatActivity {
         textViewRating = (TextView) findViewById(R.id.textViewRating);
         textViewArtist = (TextView) findViewById(R.id.textViewArtist);
         listViewTracks = (ListView) findViewById(R.id.listViewTracks);
+<<<<<<< HEAD
         buttonAddTrack.setVisibility(View.INVISIBLE);
         editTextTrackName.setVisibility(View.INVISIBLE);
         textViewRating.setVisibility(View.INVISIBLE);
         seekBarRating.setVisibility(View.INVISIBLE);
+=======
+
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
         hinhthucthis = new ArrayList<>();
 
         textViewArtist.setText(intent.getStringExtra(CapDaiActivity.TEN_DAI));
@@ -88,6 +103,7 @@ public class HinhThucThiActivity extends AppCompatActivity {
                 saveTrack();
             }
         });
+<<<<<<< HEAD
         //attaching listener to listview
         listViewTracks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -130,6 +146,32 @@ public class HinhThucThiActivity extends AppCompatActivity {
             }
         });
     }
+=======
+    }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        databaseTracks.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                tracks.clear();
+//                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+//                    Track track = postSnapshot.getValue(Track.class);
+//                    tracks.add(track);
+//                }
+//                TrackList trackListAdapter = new TrackList(ArtistActivity.this, tracks);
+//                listViewTracks.setAdapter(trackListAdapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 
     private void saveTrack() {
         String trackName = editTextTrackName.getText().toString().trim();

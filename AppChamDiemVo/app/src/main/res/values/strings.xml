@@ -21,6 +21,7 @@
         <item name="sufi">Sufi</item>
         <item name="folk">Folk</item>
     </array>
+<<<<<<< HEAD
     <array name="diemso">
         <item name="0">0</item>
         <item name="1">1</item>
@@ -34,4 +35,6 @@
         <item name="9">9</item>
         <item name="10">10</item>
     </array>
+=======
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 </resources>

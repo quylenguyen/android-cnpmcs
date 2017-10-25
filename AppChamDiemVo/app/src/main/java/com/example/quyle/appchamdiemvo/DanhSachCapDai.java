@@ -18,7 +18,11 @@ public class DanhSachCapDai extends ArrayAdapter<CapDai> {
     List<CapDai> danhSachCapDai;
 
     public DanhSachCapDai(Activity context, List<CapDai> danhSachCapDai) {
+<<<<<<< HEAD
         super(context, R.layout.list_layout_cap_dai, danhSachCapDai);
+=======
+        super(context, R.layout.list_layout, danhSachCapDai);
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
         this.context = context;
         this.danhSachCapDai = danhSachCapDai;
     }
@@ -27,10 +31,17 @@ public class DanhSachCapDai extends ArrayAdapter<CapDai> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
+<<<<<<< HEAD
         View listViewItem = inflater.inflate(R.layout.list_layout_cap_dai, null, true);
 
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
 //        TextView textViewGenre = (TextView) listViewItem.findViewById(R.id.textViewGenre);
+=======
+        View listViewItem = inflater.inflate(R.layout.list_layout, null, true);
+
+        TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
+        TextView textViewGenre = (TextView) listViewItem.findViewById(R.id.textViewGenre);
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 
         CapDai capdai = danhSachCapDai.get(position);
         textViewName.setText(capdai.getTenDai());

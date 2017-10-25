@@ -18,7 +18,11 @@
         android:hint="Enter name" />
 
     <Spinner
+<<<<<<< HEAD
         android:id="@+id/spinnerDiemSo"
+=======
+        android:id="@+id/spinnerGenres"
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextName"
@@ -28,7 +32,11 @@
         android:id="@+id/buttonAddArtist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_below="@id/spinnerDiemSo"
+=======
+        android:layout_below="@id/spinnerGenres"
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
         android:text="Add" />
 
     <TextView
@@ -37,7 +45,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonAddArtist"
         android:padding="@dimen/activity_horizontal_margin"
+<<<<<<< HEAD
         android:text="Các Cấp Đai"
+=======
+        android:text="Artists"
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
         android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
@@ -46,15 +58,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView"
+<<<<<<< HEAD
         android:text="Chọn cấp đai bạn muốn chấm"
         android:textAlignment="center" />
 
     <ListView
+=======
+        android:text="Tap on an Artist to add and view tracks"
+        android:textAlignment="center" />
+
+    <ListView
+<<<<<<< HEAD
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
         android:id="@+id/listViewCapDais"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"></ListView>
+<<<<<<< HEAD
+=======
+=======
+        android:id="@+id/listViewArtists"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"></ListView>
+>>>>>>> acd9577e081bac04b6ee8ba53eea71855c93b3fe
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 
 </RelativeLayout>

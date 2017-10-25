@@ -1,10 +1,21 @@
 package com.example.quyle.appchamdiemvo;
 
+<<<<<<< HEAD
 import android.content.Intent;
+=======
+<<<<<<< HEAD
+import android.content.Intent;
+=======
+>>>>>>> acd9577e081bac04b6ee8ba53eea71855c93b3fe
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,14 +35,43 @@ import java.util.List;
 public class CapDaiActivity extends AppCompatActivity {
     public static final String DAI_ID = "daiid";
     public static final String TEN_DAI = "tendai";
+<<<<<<< HEAD
+=======
+=======
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+public class CapDaiActivity extends AppCompatActivity {
+//    public static final String ARTIST_NAME = "net.simplifiedcoding.firebasedatabaseexample.artistname";
+//    public static final String ARTIST_ID = "net.simplifiedcoding.firebasedatabaseexample.artistid";
+>>>>>>> acd9577e081bac04b6ee8ba53eea71855c93b3fe
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 
     EditText editTextName;
     Spinner spinnerGenre;
     Button buttonAddArtist;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
     ListView listViewCapDais;
 
     //a list to store all the artist from firebase database
     List<CapDai> danhSachCapDais;
+<<<<<<< HEAD
+=======
+=======
+//    ListView listViewArtists;
+
+    //a list to store all the artist from firebase database
+//    List<Artist> artists;
+>>>>>>> acd9577e081bac04b6ee8ba53eea71855c93b3fe
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 
     //our database reference object
     DatabaseReference databaseArtists;
@@ -46,6 +86,7 @@ public class CapDaiActivity extends AppCompatActivity {
 
         //getting views
         editTextName = (EditText) findViewById(R.id.editTextName);
+<<<<<<< HEAD
         editTextName.setVisibility(View.INVISIBLE);
         spinnerGenre = (Spinner) findViewById(R.id.spinnerDiemSo);
         spinnerGenre.setVisibility(View.INVISIBLE);
@@ -56,6 +97,23 @@ public class CapDaiActivity extends AppCompatActivity {
         buttonAddArtist.setVisibility(View.INVISIBLE);
         //list to store artists
         danhSachCapDais = new ArrayList<>();
+=======
+        spinnerGenre = (Spinner) findViewById(R.id.spinnerGenres);
+<<<<<<< HEAD
+        listViewCapDais = (ListView) findViewById(R.id.listViewCapDais);
+=======
+//        listViewArtists = (ListView) findViewById(R.id.listViewArtists);
+>>>>>>> acd9577e081bac04b6ee8ba53eea71855c93b3fe
+
+        buttonAddArtist = (Button) findViewById(R.id.buttonAddArtist);
+
+        //list to store artists
+<<<<<<< HEAD
+        danhSachCapDais = new ArrayList<>();
+=======
+//        artists = new ArrayList<>();
+>>>>>>> acd9577e081bac04b6ee8ba53eea71855c93b3fe
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 
 
         //adding an onclicklistener to button
@@ -70,6 +128,10 @@ public class CapDaiActivity extends AppCompatActivity {
         });
 
         //attaching listener to listview
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
         listViewCapDais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -87,6 +149,28 @@ public class CapDaiActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+<<<<<<< HEAD
+=======
+=======
+//        listViewArtists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                //getting the selected artist
+//                Artist artist = artists.get(i);
+//
+//                //creating an intent
+//                Intent intent = new Intent(getApplicationContext(), ArtistActivity.class);
+//
+//                //putting artist name and id to intent
+//                intent.putExtra(ARTIST_ID, artist.getArtistId());
+//                intent.putExtra(ARTIST_NAME, artist.getArtistName());
+//
+//                //starting the activity with intent
+//                startActivity(intent);
+//            }
+//        });
+>>>>>>> acd9577e081bac04b6ee8ba53eea71855c93b3fe
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 
 //        listViewArtists.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 //            @Override
@@ -168,6 +252,10 @@ public class CapDaiActivity extends AppCompatActivity {
 //        return true;
 //    }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
     @Override
     protected void onStart() {
         super.onStart();
@@ -199,6 +287,42 @@ public class CapDaiActivity extends AppCompatActivity {
             }
         });
     }
+<<<<<<< HEAD
+=======
+=======
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        //attaching value event listener
+//        databaseArtists.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                //clearing the previous artist list
+//                artists.clear();
+//
+//                //iterating through all the nodes
+//                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+//                    //getting artist
+//                    Artist artist = postSnapshot.getValue(Artist.class);
+//                    //adding artist to the list
+//                    artists.add(artist);
+//                }
+//
+//                //creating adapter
+//                ArtistList artistAdapter = new ArtistList(MainActivity.this, artists);
+//                //attaching adapter to the listview
+//                listViewArtists.setAdapter(artistAdapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
+>>>>>>> acd9577e081bac04b6ee8ba53eea71855c93b3fe
+>>>>>>> a4d743ab48679a75e092979ffacdb8a49ccf3528
 
 
     /*

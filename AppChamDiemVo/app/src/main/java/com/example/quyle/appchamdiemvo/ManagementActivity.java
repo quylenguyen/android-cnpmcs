@@ -42,7 +42,7 @@ public class ManagementActivity extends AppCompatActivity implements View.OnClic
         //initializing views
 
         buttonDangXuat = (Button) findViewById(R.id.buttonDangXuat);
-        buttonProfile = (Button) findViewById(R.id.buttonProfile);
+//        buttonProfile = (Button) findViewById(R.id.buttonProfile);
         buttonChamDiem = (Button) findViewById(R.id.buttonChamDiem);
 
 

@@ -9,17 +9,20 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Model.DotThi;
+import Model.DotThiList;
 
 public class DotThiActivity extends AppCompatActivity {
-//    public static final String ARTIST_NAME = "net.simplifiedcoding.firebasedatabaseexample.artistname";
-//    public static final String ARTIST_ID = "net.simplifiedcoding.firebasedatabaseexample.artistid";
+
 
 
     ListView listViewDotThi;
@@ -29,10 +32,9 @@ public class DotThiActivity extends AppCompatActivity {
     List<DotThi> danhSachDotThi;
 
 
-//    ListView listViewArtists;
+    ListView getListViewDotThi;
 
-    //a list to store all the artist from firebase database
-//    List<Artist> artists;
+
 
 
     //our database reference object
@@ -50,6 +52,8 @@ public class DotThiActivity extends AppCompatActivity {
 
         buttonAddTenDotThi = (Button) findViewById(R.id.buttonAddTenDotThi);
         editTextTenDotThi = (EditText) findViewById(R.id.editTextTenDotThi);
+        editTextTenDotThi.setVisibility(View.INVISIBLE);
+        buttonAddTenDotThi.setVisibility(View.INVISIBLE);
         listViewDotThi = (ListView) findViewById(R.id.listViewDotThi);
 
         //list to store artists
@@ -67,43 +71,6 @@ public class DotThiActivity extends AppCompatActivity {
             }
         });
     }
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        //attaching value event listener
-//        databaseDotThi.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                //clearing the previous artist list
-//                danhSachDotThi.clear();
-//
-//                //iterating through all the nodes
-//                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-//                    //getting artist
-//                    DotThi dotthi = postSnapshot.getValue(DotThi.class);
-//                    //adding artist to the list
-//                    danhSachDotThi.add(dotthi);
-//                }
-//
-//                //creating adapter
-//                DanhSachDotThi dotthiAdapter = new DanhSachDotThi(DotThiActivity.this, danhSachDotThi);
-//                //attaching adapter to the listview
-//                listViewDotThi.setAdapter(dotthiAdapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
-
-
-    /*
-    * This method is saving a new artist to the
-    * Firebase Realtime Database
-    * */
     private void addDotThi() {
         //getting the values to save
         String name = editTextTenDotThi.getText().toString().trim();
@@ -131,6 +98,38 @@ public class DotThiActivity extends AppCompatActivity {
             //if the value is not given displaying a toast
             Toast.makeText(this, "Xin hãy nhập đợt thi", Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //attaching value event listener
+        databaseDotThi.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //clearing the previous artist list
+                danhSachDotThi.clear();
+
+                //iterating through all the nodes
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    //getting artist
+                    DotThi dotthi = postSnapshot.getValue(DotThi.class);
+                    //adding artist to the list
+                    danhSachDotThi.add(dotthi);
+                }
+
+                //creating adapter
+                DotThiList dotthiAdapter = new DotThiList(DotThiActivity.this, danhSachDotThi);
+                //attaching adapter to the listview
+                listViewDotThi.setAdapter(dotthiAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
 

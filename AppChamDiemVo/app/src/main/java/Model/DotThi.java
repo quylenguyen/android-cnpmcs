@@ -7,7 +7,9 @@ package Model;
 public class DotThi {
     String idDotThi;
     String tenDotThi;
+    public DotThi(){
 
+    }
     public DotThi(String idDotThi, String tenDotThi) {
         this.idDotThi = idDotThi;
         this.tenDotThi = tenDotThi;

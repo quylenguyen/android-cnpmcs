@@ -15,6 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import Model.DotThi;
+
 public class DotThiActivity extends AppCompatActivity {
 //    public static final String ARTIST_NAME = "net.simplifiedcoding.firebasedatabaseexample.artistname";
 //    public static final String ARTIST_ID = "net.simplifiedcoding.firebasedatabaseexample.artistid";

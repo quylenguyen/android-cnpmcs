@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import Model.DotThi;
+
 /**
  * Created by quyle on 10/25/2017.
  */

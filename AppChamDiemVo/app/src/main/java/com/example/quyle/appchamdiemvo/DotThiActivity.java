@@ -1,9 +1,11 @@
 package com.example.quyle.appchamdiemvo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.DotThi;
-import Model.DotThiList;
+import View.Adapter.DotThiList;
 
 public class DotThiActivity extends AppCompatActivity {
 
@@ -55,6 +57,13 @@ public class DotThiActivity extends AppCompatActivity {
         editTextTenDotThi.setVisibility(View.INVISIBLE);
         buttonAddTenDotThi.setVisibility(View.INVISIBLE);
         listViewDotThi = (ListView) findViewById(R.id.listViewDotThi);
+        listViewDotThi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(DotThiActivity.this,CapDaiActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //list to store artists
         danhSachDotThi = new ArrayList<>();

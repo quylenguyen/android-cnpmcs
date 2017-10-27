@@ -1,4 +1,4 @@
-package Model;
+package View.Adapter;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.example.quyle.appchamdiemvo.R;
 
 import java.util.List;
+
+import Model.DotThi;
 
 /**
  * Created by quyle on 10/26/2017.

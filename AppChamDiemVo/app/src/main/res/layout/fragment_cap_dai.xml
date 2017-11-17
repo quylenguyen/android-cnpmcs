@@ -3,10 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCapDai"
+        android:visibility="gone"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm Cấp Đai"
+        android:id="@+id/btnAddCapDai"
+        android:visibility="gone"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Danh Sách Các Đai"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#FFF"
         android:gravity="center"/>
     <ListView
         android:layout_width="wrap_content"

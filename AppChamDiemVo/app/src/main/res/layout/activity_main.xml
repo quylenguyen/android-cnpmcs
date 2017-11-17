@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
     tools:context="com.example.quyle.appchamdiemvo.MainActivity">
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/vovinambackground"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"/>
     <LinearLayout
         android:layout_centerVertical="true"
         android:layout_width="368dp"
@@ -45,18 +53,6 @@
             android:layout_margin="15dp"
             android:text="Đăng Nhập" />
 
-        <!--<ProgressBar-->
-        <!--android:id="@+id/progressbar"-->
-        <!--style="?android:attr/progressBarStyleHorizontal"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:indeterminate="true"-->
-        <!--android:max="100"-->
-        <!--android:backgroundTint="@color/colorPrimary"-->
-        <!--android:layout_below="@+id/framelauout"-->
-        <!--android:indeterminateTint="#1a09d6"-->
-        <!--android:layout_marginTop="-7dp"/>-->
-
         <TextView
             android:text=""
             android:id="@+id/textViewSignUp"
@@ -67,4 +63,4 @@
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

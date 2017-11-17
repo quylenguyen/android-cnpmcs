@@ -18,9 +18,6 @@ import java.util.List;
 import Model.CapDai;
 import Model.DotThi;
 
-/**
- * Created by vtnhan on 10/28/2017.
- */
 
 public class CapDaiAdapter extends ArrayAdapter<CapDai> {
     private Activity context;

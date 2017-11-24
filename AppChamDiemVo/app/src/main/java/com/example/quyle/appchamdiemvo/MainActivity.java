@@ -41,11 +41,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //if the objects getcurrentuser method is not null
         //means user is already logged in
+//        FirebaseUser user = firebaseAuth.getCurrentUser();
         if(firebaseAuth.getCurrentUser() != null){
             //close this activity
             finish();
+            if(firebaseAuth.getCurrentUser().getEmail().equals("admin@gmail.com"))
+                startActivity(new Intent(getApplicationContext(), AdminPanelActivity.class));
+            else
             //opening profile activity
-            startActivity(new Intent(getApplicationContext(), ManagementActivity.class));
+                startActivity(new Intent(getApplicationContext(), ManagementActivity.class));
         }
 
         //initializing views
@@ -92,7 +96,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         if(task.isSuccessful()){
                             //start the profile activity
                             finish();
-                            startActivity(new Intent(getApplicationContext(), ManagementActivity.class));
+                            if(firebaseAuth.getCurrentUser().getEmail().equals("admin@gmail.com"))
+                                startActivity(new Intent(getApplicationContext(), AdminPanelActivity.class));
+                            else
+                                //opening profile activity
+                                startActivity(new Intent(getApplicationContext(), ManagementActivity.class));
                         }
                     }
                 });

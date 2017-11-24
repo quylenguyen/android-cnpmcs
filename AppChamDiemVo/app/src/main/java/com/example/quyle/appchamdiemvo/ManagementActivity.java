@@ -96,21 +96,4 @@ public class ManagementActivity extends AppCompatActivity {
 
     }
 
-
-//    @Override
-//    public void onClick(View view) {
-//        //if logout is pressed
-//        if(view == btnDangXuat){
-//            //logging out the user
-//            firebaseAuth.signOut();
-//            //closing activity
-//            finish();
-//            //starting login activity
-//            startActivity(new Intent(this, MainActivity.class));
-//        }
-//        if(view == buttonChamDiem)
-//        {
-//            startActivity(new Intent(getApplicationContext(), DotThiActivity.class));
-//        }
-//    }
 }

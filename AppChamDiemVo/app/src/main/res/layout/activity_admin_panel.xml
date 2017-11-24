@@ -6,4 +6,48 @@
     android:layout_height="match_parent"
     tools:context="com.example.quyle.appchamdiemvo.AdminPanelActivity">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="abc"
+        app:layout_constraintEnd_toStartOf="@+id/vp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="50dp">
+
+    </android.support.v4.view.ViewPager>
+
+    <Button
+        android:id="@+id/btnQLND"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="104dp"
+        android:layout_marginTop="176dp"
+        android:text="Quản Lý Người Dùng"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnQLDT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="264dp"
+        android:text="Quản Lý Đợt Thi"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnDX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="396dp"
+        android:text="Đăng Xuất"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

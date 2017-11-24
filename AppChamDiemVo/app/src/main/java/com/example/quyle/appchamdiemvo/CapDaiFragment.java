@@ -1,6 +1,5 @@
 package com.example.quyle.appchamdiemvo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -38,6 +37,7 @@ public class CapDaiFragment extends Fragment{
     TextView txtCapDai;
     Button btnAddCapDai;
     DatabaseReference databaseCapDai;
+
 
     public CapDaiFragment() {
     }
@@ -112,5 +112,4 @@ public class CapDaiFragment extends Fragment{
             Toast.makeText(getContext(), "Xin hãy nhập đợt thi", Toast.LENGTH_LONG).show();
         }
     }
-
 }

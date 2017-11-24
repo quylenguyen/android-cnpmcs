@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AppChamDiemVo.iml" filepath="$PROJECT_DIR$/AppChamDiemVo.iml" />
+      <module fileurl="file://D:\SOURCE-CODE\android-cnpmcs\AppChamDiemVo\AppChamDiemVo.iml" filepath="D:\SOURCE-CODE\android-cnpmcs\AppChamDiemVo\AppChamDiemVo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\SOURCE-CODE\android-cnpmcs\AppChamDiemVo\app\app.iml" filepath="D:\SOURCE-CODE\android-cnpmcs\AppChamDiemVo\app\app.iml" />
     </modules>
   </component>
 </project>

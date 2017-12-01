@@ -6,8 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +20,7 @@ public class ManagementActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ViewPager viewPager;
     private TabLayout tabLayout;
-    private Button btnDangXuat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +28,6 @@ public class ManagementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_management);
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.vp);
-        btnDangXuat = (Button) findViewById(R.id.btnDangXuat);
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
@@ -58,22 +55,7 @@ public class ManagementActivity extends AppCompatActivity {
 
 
         //adding listener to button
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(v == btnDangXuat){
-                    //logging out the user
-                    firebaseAuth.signOut();
-                    //closing activity
-                    finish();
-                    //starting login activity
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                }
-            }
-        });
-
     }
-
 
     private void setupViewPager(ViewPager viewPager) {
         adapter = new HomePagerAdapter(getSupportFragmentManager());
@@ -96,4 +78,20 @@ public class ManagementActivity extends AppCompatActivity {
 
     }
 
+//    @Override
+//    public void onClick(View view) {
+//        //if logout is pressed
+//        if(view == buttonDangXuat){
+//            //logging out the user
+//            firebaseAuth.signOut();
+//            //closing activity
+//            finish();
+//            //starting login activity
+//            startActivity(new Intent(this, MainActivity.class));
+//        }
+//        if(view == buttonChamDiem)
+//        {
+//            startActivity(new Intent(getApplicationContext(), DotThiActivity.class));
+//        }
+//    }
 }

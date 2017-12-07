@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class AdminPanelActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private Button btnDX;
+    private Button btnQLDT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class AdminPanelActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         btnDX = (Button) findViewById(R.id.btnDX);
+        btnQLDT = (Button) findViewById(R.id.btnQLDT);
         btnDX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,5 +48,17 @@ public class AdminPanelActivity extends AppCompatActivity {
                 }
             }
         });
+        btnQLDT.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(v == btnQLDT){
+                    //closing activity
+                    finish();
+                    //starting QLDT activity
+                    startActivity(new Intent(getApplicationContext(), QuanLyDotThiActivity.class));
+                }
+            }
+        });
+
     }
 }

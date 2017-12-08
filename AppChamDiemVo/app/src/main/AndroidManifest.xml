@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".AdminPanelActivity" />
         <activity android:name=".QuanLyDotThiActivity"></activity>
+        <activity android:name=".QuanLyCapDai"></activity>
     </application>
 
 </manifest>

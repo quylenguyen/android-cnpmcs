@@ -13,6 +13,7 @@ public class AdminPanelActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private Button btnDX;
     private Button btnQLDT;
+    private Button btnQLCapDai;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,15 @@ public class AdminPanelActivity extends AppCompatActivity {
 
         btnDX = (Button) findViewById(R.id.btnDX);
         btnQLDT = (Button) findViewById(R.id.btnQLDT);
+
+        btnQLCapDai = (Button) findViewById(R.id.btnQLCapDai);
+
+        btnQLCapDai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminPanelActivity.this,QuanLyCapDai.class));
+            }
+        });
         btnDX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

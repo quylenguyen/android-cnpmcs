@@ -43,7 +43,6 @@ public class TinhDiemFragment extends Fragment {
         final String ngaySinh = bundle.get("NgaySinh").toString();
         final String capDai = bundle.get("CapDai").toString();
         final String donVi = bundle.get("DonVi").toString();
-        final String URL = bundle.get("URL").toString();
         txtTen.setText(name);
         txtND1.setText(bundle.get("DiemND1").toString());
         txtND2.setText(bundle.get("DiemND2").toString());
@@ -60,7 +59,7 @@ public class TinhDiemFragment extends Fragment {
                 int n3 = Integer.parseInt(txtND3.getText().toString());
                 int n4 = Integer.parseInt(txtND4.getText().toString());
                 int n5 = Integer.parseInt(txtND5.getText().toString());
-                HocVien hv = new HocVien(id,name,ngaySinh,capDai,donVi,URL,n1,n2,n3,n4,n5,0);
+                HocVien hv = new HocVien(id,name,ngaySinh,capDai,donVi,n1,n2,n3,n4,n5,0);
                 dbHV.child(id).setValue(hv);
                 Toast.makeText(getContext(),"Lưu Bài Thi Thành Công",Toast.LENGTH_LONG).show();
             }

@@ -1,11 +1,14 @@
 package com.example.quyle.appchamdiemvo;
 
+
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +32,7 @@ import View.Adapter.CapDaiAdapterList;
  * Created by vtnhan on 12/8/2017.
  */
 
-public class QuanLyCapDai extends AppCompatActivity{
+public class QuanLyCapDai extends Fragment {
     ListView lvQuanLyCapDai;
     Button btnAddCapDai;
     MaterialEditText edtCapDai;
@@ -40,27 +43,25 @@ public class QuanLyCapDai extends AppCompatActivity{
     ListView getListViewDotThi;
 
 
-
-
     //our database reference object
     DatabaseReference dbQLCapDai;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.quanly_capdai_fragment);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.quanly_capdai_fragment,container,false);
 
         //getting the reference of artists node
         dbQLCapDai = FirebaseDatabase.getInstance().getReference("CapDai");
 
         //getting views
 
-        btnAddCapDai = (Button) findViewById(R.id.btnAddQLCapDai);
-        edtCapDai = (MaterialEditText) findViewById(R.id.edtTenCapDai);
+        btnAddCapDai = (Button) rootView.findViewById(R.id.btnAddQLCapDai);
+        edtCapDai = (MaterialEditText) rootView.findViewById(R.id.edtTenCapDai);
 
 //        editTextTenDotThi.setVisibility(View.INVISIBLE);
 //        buttonAddTenDotThi.setVisibility(View.INVISIBLE);
-        lvQuanLyCapDai = (ListView) findViewById(R.id.lvQLCapDai);
+        lvQuanLyCapDai = (ListView) rootView.findViewById(R.id.lvQLCapDai);
 
         //list to store artists
         lsCapDai = new ArrayList<>();
@@ -86,10 +87,37 @@ public class QuanLyCapDai extends AppCompatActivity{
                 return false;
             }
         });
+        dbQLCapDai.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //clearing the previous artist list
+                lsCapDai.clear();
+
+                //iterating through all the nodes
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    //getting artist
+                    CapDai capDai = postSnapshot.getValue(CapDai.class);
+                    //adding artist to the list
+                    lsCapDai.add(capDai);
+                }
+
+                //creating adapter
+                CapDaiAdapterList capDaiAdapterList = new CapDaiAdapterList(getActivity(), lsCapDai);
+                //attaching adapter to the listview
+                lvQuanLyCapDai.setAdapter(capDaiAdapterList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return rootView;
     }
     private void showUpdateDialog(final String tenCapDai,final String idCapDai) {
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.update_dialog, null);
         dialogBuilder.setView(dialogView);
@@ -138,12 +166,11 @@ public class QuanLyCapDai extends AppCompatActivity{
             //Saving the Artist
             dbQLCapDai.child(id).setValue(capDai);
             //setting edittext to blank again
-            edtCapDai.setText("");
             //displaying a success toast
-            Toast.makeText(this, "Đã thêm cấp đai", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Đã thêm cấp đai", Toast.LENGTH_LONG).show();
         } else {
             //if the value is not given displaying a toast
-            Toast.makeText(this, "Xin hãy nhập cấp đai", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Xin hãy nhập cấp đai", Toast.LENGTH_LONG).show();
         }
     }
     private boolean updateCapDai( String name, String id) {
@@ -153,7 +180,7 @@ public class QuanLyCapDai extends AppCompatActivity{
         //updating artist
         CapDai capDai = new CapDai(id,name);
         dR.setValue(capDai);
-        Toast.makeText(getApplicationContext(), "Cấp đai đã được cập nhật", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Cấp đai đã được cập nhật", Toast.LENGTH_LONG).show();
         return true;
     }
     private boolean deleteCapDai(String id) {
@@ -163,39 +190,9 @@ public class QuanLyCapDai extends AppCompatActivity{
         //removing artist
         dR.removeValue();
 
-        Toast.makeText(getApplicationContext(), "Đợt thi đã được xóa", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Đợt thi đã được xóa", Toast.LENGTH_LONG).show();
 
         return true;
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        //attaching value event listener
-        dbQLCapDai.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                //clearing the previous artist list
-                lsCapDai.clear();
-
-                //iterating through all the nodes
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    //getting artist
-                    CapDai capDai = postSnapshot.getValue(CapDai.class);
-                    //adding artist to the list
-                    lsCapDai.add(capDai);
-                }
-
-                //creating adapter
-                CapDaiAdapterList capDaiAdapterList = new CapDaiAdapterList(QuanLyCapDai.this, lsCapDai);
-                //attaching adapter to the listview
-                lvQuanLyCapDai.setAdapter(capDaiAdapterList);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
 }
+

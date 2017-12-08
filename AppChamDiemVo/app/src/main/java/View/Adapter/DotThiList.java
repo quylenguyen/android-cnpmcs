@@ -1,4 +1,4 @@
-package Model;
+package View.Adapter;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.example.quyle.appchamdiemvo.R;
 
 import java.util.List;
+
+import Model.DotThi;
 
 /**
  * Created by quyle on 12/7/2017.
@@ -34,8 +36,6 @@ public class DotThiList extends ArrayAdapter<DotThi> {
         View listViewItem = inflater.inflate(R.layout.list_layout, null, true);
 
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
-
-
         DotThi dotthi = dotThiList.get(position);
         textViewName.setText(dotthi.getTenDotThi());
 

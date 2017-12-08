@@ -7,17 +7,9 @@
     android:layout_height="match_parent"
     android:id="@+id/contentLayout"
     android:background="@color/colorBackground"
-    tools:context="com.example.quyle.appchamdiemvo.ManagementActivity"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
-    <Button
-        android:id="@+id/btnDangXuat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:paddingTop="0dp"
-        android:text="Đăng Xuất" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
@@ -26,6 +18,7 @@
         android:paddingTop="50dp">
 
     </android.support.v4.view.ViewPager>
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
@@ -36,6 +29,14 @@
 
         app:tabTextColor="@color/colorText">
     </android.support.design.widget.TabLayout>
+
+    <Button
+        android:id="@+id/btnDangXuat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:paddingTop="0dp"
+        android:text="Đăng Xuất" />
 
 
 </android.support.design.widget.CoordinatorLayout>

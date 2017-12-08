@@ -69,7 +69,6 @@ public class HocVienFragment extends Fragment{
                         bundle.putString("NgaySinh",hv._NgaySinh);
                         bundle.putString("CapDai",hv._DaiHienTai);
                         bundle.putString("DonVi",hv._DonVi);
-                        bundle.putString("URL",hv.URLImage);
                         bundle.putInt("DiemND1",hv._DiemNoiDung1);
                         bundle.putInt("DiemND2",hv._DiemNoiDung2);
                         bundle.putInt("DiemND3",hv._DiemNoiDung3);
@@ -118,7 +117,7 @@ public class HocVienFragment extends Fragment{
             //it will create a unique id and we will use it as the Primary Key for our Artist
             String id = dbHV.push().getKey();
             //creating an Artist Object
-            HocVien hv = new HocVien(id,name,ngaySinh,donVi,capDaiHienTai,URLImage,0,0,0,0,0,0);
+            HocVien hv = new HocVien(id,name,ngaySinh,donVi,capDaiHienTai,0,0,0,0,0,0);
             //Saving the Artist
             dbHV.child(id).setValue(hv);
             //setting edittext to blank again

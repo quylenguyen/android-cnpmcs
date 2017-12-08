@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonSignIn;
     private EditText editTextEmail;
     private EditText editTextPassword;
+    Boolean isAdmin;
 //    private TextView textViewSignup;
 
     //firebase auth object
@@ -45,11 +46,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(firebaseAuth.getCurrentUser() != null){
             //close this activity
             finish();
-            if(firebaseAuth.getCurrentUser().getEmail().equals("admin@gmail.com"))
-                startActivity(new Intent(getApplicationContext(), AdminPanelActivity.class));
-            else
-            //opening profile activity
-                startActivity(new Intent(getApplicationContext(), ManagementActivity.class));
+            if(firebaseAuth.getCurrentUser().getEmail().equals("admin@gmail.com")) {
+                isAdmin = true;
+                Intent i = new Intent(getApplicationContext(), A.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("isAdmin",isAdmin);
+                i.putExtras(bundle);
+                startActivity(i);
+
+            }
+            else{
+                isAdmin = false;
+                Intent i = new Intent(getApplicationContext(), A.class);
+                i.putExtra("isAdmin",isAdmin);
+                startActivity(i);
+            }
         }
 
         //initializing views
@@ -97,10 +108,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             //start the profile activity
                             finish();
                             if(firebaseAuth.getCurrentUser().getEmail().equals("admin@gmail.com"))
-                                startActivity(new Intent(getApplicationContext(), AdminPanelActivity.class));
+                                startActivity(new Intent(getApplicationContext(), A.class));
                             else
                                 //opening profile activity
-                                startActivity(new Intent(getApplicationContext(), ManagementActivity.class));
+                                startActivity(new Intent(getApplicationContext(), A.class));
                         }
                     }
                 });

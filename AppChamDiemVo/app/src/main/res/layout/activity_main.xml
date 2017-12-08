@@ -30,27 +30,41 @@
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal" />
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
+            android:text=""
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="Email"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:hint="Nhập vào email"
-            android:inputType="textEmailAddress" />
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="@color/colorPrimary"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/colorPrimary"/> />
 
-        <EditText
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
+            android:text=""
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="Mật khẩu"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:hint="Nhập vào mật khẩu"
-            android:inputType="textPassword" />
-
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="@color/colorPrimary"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/colorPrimary"/>
         <Button
             android:id="@+id/buttonSignin"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:layout_gravity="center"
             android:text="Đăng Nhập" />
 
         <TextView

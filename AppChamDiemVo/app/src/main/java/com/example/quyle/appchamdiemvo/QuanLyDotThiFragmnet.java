@@ -4,12 +4,16 @@ package com.example.quyle.appchamdiemvo;
  * Created by quyle on 12/7/2017.
  */
 
+
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,9 +30,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.DotThi;
-import Model.DotThiList;
+import View.Adapter.DotThiList;
 
-public class QuanLyDotThiActivity extends AppCompatActivity {
+public class QuanLyDotThiFragmnet extends Fragment {
 
 
 
@@ -50,22 +54,22 @@ public class QuanLyDotThiActivity extends AppCompatActivity {
     //our database reference object
     DatabaseReference databaseDotThi;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quan_ly_dot_thi);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View viewRoot = inflater.inflate(R.layout.activity_quan_ly_dot_thi,container,false);
 
         //getting the reference of artists node
         databaseDotThi = FirebaseDatabase.getInstance().getReference("dotthis");
 
         //getting views
 
-        buttonAddTenDotThi = (Button) findViewById(R.id.buttonAddTenDotThi1);
-        editTextTenDotThi = (EditText) findViewById(R.id.editTextTenDotThi1);
+        buttonAddTenDotThi = (Button) viewRoot.findViewById(R.id.buttonAddTenDotThi1);
+        editTextTenDotThi = (EditText) viewRoot.findViewById(R.id.editTextTenDotThi1);
 
 //        editTextTenDotThi.setVisibility(View.INVISIBLE);
 //        buttonAddTenDotThi.setVisibility(View.INVISIBLE);
-        listViewDotThi = (ListView) findViewById(R.id.listViewDotThi1);
+        listViewDotThi = (ListView) viewRoot.findViewById(R.id.listViewDotThi1);
 
         //list to store artists
         danhSachDotThi = new ArrayList<>();
@@ -91,10 +95,37 @@ public class QuanLyDotThiActivity extends AppCompatActivity {
                 return false;
             }
         });
+        databaseDotThi.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //clearing the previous artist list
+                danhSachDotThi.clear();
+
+                //iterating through all the nodes
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    //getting artist
+                    DotThi dotthi = postSnapshot.getValue(DotThi.class);
+                    //adding artist to the list
+                    danhSachDotThi.add(dotthi);
+                }
+
+                //creating adapter
+                DotThiList dotthiAdapter = new DotThiList(getActivity(), danhSachDotThi);
+                //attaching adapter to the listview
+                listViewDotThi.setAdapter(dotthiAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return  viewRoot;
     }
     private void showUpdateDialog(final String idDotThi, final String tenDotThi) {
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.update_dialog, null);
         dialogBuilder.setView(dialogView);
@@ -161,10 +192,10 @@ public class QuanLyDotThiActivity extends AppCompatActivity {
             editTextTenDotThi.setText("");
 
             //displaying a success toast
-            Toast.makeText(this, "Đã thêm đợt thi", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Đã thêm đợt thi", Toast.LENGTH_LONG).show();
         } else {
             //if the value is not given displaying a toast
-            Toast.makeText(this, "Xin hãy nhập đợt thi", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Xin hãy nhập đợt thi", Toast.LENGTH_LONG).show();
         }
     }
     private boolean updateDotThi(String id, String name) {
@@ -174,7 +205,7 @@ public class QuanLyDotThiActivity extends AppCompatActivity {
         //updating artist
         DotThi dotthi = new DotThi(id, name);
         dR.setValue(dotthi);
-        Toast.makeText(getApplicationContext(), "Đợt thi đã được cập nhật", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Đợt thi đã được cập nhật", Toast.LENGTH_LONG).show();
         return true;
     }
     private boolean deleteDotThi(String id) {
@@ -184,39 +215,9 @@ public class QuanLyDotThiActivity extends AppCompatActivity {
         //removing artist
         dR.removeValue();
 
-        Toast.makeText(getApplicationContext(), "Đợt thi đã được xóa", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Đợt thi đã được xóa", Toast.LENGTH_LONG).show();
 
         return true;
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        //attaching value event listener
-        databaseDotThi.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                //clearing the previous artist list
-                danhSachDotThi.clear();
-
-                //iterating through all the nodes
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    //getting artist
-                    DotThi dotthi = postSnapshot.getValue(DotThi.class);
-                    //adding artist to the list
-                    danhSachDotThi.add(dotthi);
-                }
-
-                //creating adapter
-                DotThiList dotthiAdapter = new DotThiList(QuanLyDotThiActivity.this, danhSachDotThi);
-                //attaching adapter to the listview
-                listViewDotThi.setAdapter(dotthiAdapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
 }

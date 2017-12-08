@@ -37,7 +37,6 @@ public class CapDaiAdapterList extends ArrayAdapter<CapDai> {
 
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewName);
 
-
         CapDai capDai = capDaiList.get(position);
         textViewName.setText(capDai._TenCapDai);
 

@@ -74,7 +74,6 @@ public class ManagementActivity extends AppCompatActivity {
 
     }
 
-
     private void setupViewPager(ViewPager viewPager) {
         adapter = new HomePagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new RootFragment(), "ONE");

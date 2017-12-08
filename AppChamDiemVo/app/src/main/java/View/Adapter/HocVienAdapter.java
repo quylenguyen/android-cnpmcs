@@ -22,10 +22,17 @@ import Model.HocVien;
 
 public class HocVienAdapter extends RecyclerView.Adapter<HocVienAdapter.ViewHolder> {
     List<HocVien> lsHV;
-    public OnClickHVListener listener;
+    public OnClickHVListener listener = null;
     Context context;
+    public OnLongClickHVListener onLongClickHVListener = null;
 
-    public HocVienAdapter(List<HocVien> lsHV, OnClickHVListener listener,Context context) {
+    public HocVienAdapter(List<HocVien> lsHV, Context context, OnLongClickHVListener onLongClickHVListener) {
+        this.lsHV = lsHV;
+        this.context = context;
+        this.onLongClickHVListener = onLongClickHVListener;
+    }
+
+    public HocVienAdapter(List<HocVien> lsHV, OnClickHVListener listener, Context context) {
         this.lsHV = lsHV;
         this.listener = listener;
         this.context = context;
@@ -39,9 +46,12 @@ public class HocVienAdapter extends RecyclerView.Adapter<HocVienAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(HocVienAdapter.ViewHolder holder, int position) {
-        holder.bind(lsHV.get(position),listener);
+        if(listener != null) {
+            holder.bind(lsHV.get(position), listener);
+        }
+        else
+            holder.bind1(lsHV.get(position),onLongClickHVListener);
     }
-
     @Override
     public int getItemCount() {
         return lsHV.size();
@@ -52,7 +62,6 @@ public class HocVienAdapter extends RecyclerView.Adapter<HocVienAdapter.ViewHold
         private TextView txtTen,txtNgaySing,txtCapDai,txtDonVi;
         public ViewHolder(View itemView) {
             super(itemView);
-            img = itemView.findViewById(R.id.imgPerson);
             txtTen = itemView.findViewById(R.id.txtTen);
             txtNgaySing = itemView.findViewById(R.id.txtNgaySinh);
             txtDonVi = itemView.findViewById(R.id.txtDonVi);
@@ -63,7 +72,6 @@ public class HocVienAdapter extends RecyclerView.Adapter<HocVienAdapter.ViewHold
             txtCapDai.setText(hv._DaiHienTai);
             txtNgaySing.setText(hv._NgaySinh);
             txtTen.setText(hv._Ten);
-            Picasso.with(context).load(hv.URLImage).into(img);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -71,8 +79,25 @@ public class HocVienAdapter extends RecyclerView.Adapter<HocVienAdapter.ViewHold
                 }
             });
         }
+
+        public void bind1(final HocVien hv,final OnLongClickHVListener onLongClickHVListener){
+            txtDonVi.setText(hv._DonVi);
+            txtCapDai.setText(hv._DaiHienTai);
+            txtNgaySing.setText(hv._NgaySinh);
+            txtTen.setText(hv._Ten);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onLongClickHVListener.onItemLongClick(hv);
+                }
+            });
+        }
     }
     public interface OnClickHVListener{
         void onItemClick(HocVien hv);
+    }
+
+    public interface OnLongClickHVListener{
+        void onItemLongClick(HocVien hv);
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+        android:id="@+id/QLDT"
+        android:title="Quản Lý Đợt Thi" />
+        <item
+            android:id="@+id/QLCD"
+            android:title="Quản Lý Cấp Đai" />
+        <item
+            android:id="@+id/QLUser"
+            android:title="Quản Lý User" />
+        <item
+            android:id="@+id/QLHV"
+            android:title="Quản Lý Học Viên" />
+        <item
+            android:id="@+id/ChamDiem"
+            android:title="Chấm điểm" />
+        <item
+            android:id="@+id/InfoVovinam"
+            android:title="Thông tin về Vovinam" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/Logout"
+                android:icon="@drawable/ic_logout"
+                android:title="Log out" />
+        </menu>
+    </item>
+
+</menu>

@@ -14,6 +14,7 @@ public class AdminPanelActivity extends AppCompatActivity {
     private Button btnDX;
     private Button btnQLDT;
     private Button btnQLCapDai;
+    private Button btnHv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,13 @@ public class AdminPanelActivity extends AppCompatActivity {
         btnQLDT = (Button) findViewById(R.id.btnQLDT);
 
         btnQLCapDai = (Button) findViewById(R.id.btnQLCapDai);
+        btnHv = findViewById(R.id.btnHV);
+        btnHv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         btnQLCapDai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +73,7 @@ public class AdminPanelActivity extends AppCompatActivity {
                     //closing activity
                     finish();
                     //starting QLDT activity
-                    startActivity(new Intent(getApplicationContext(), QuanLyDotThiActivity.class));
+                    startActivity(new Intent(getApplicationContext(), QuanLyDotThiFragmnet.class));
                 }
             }
         });

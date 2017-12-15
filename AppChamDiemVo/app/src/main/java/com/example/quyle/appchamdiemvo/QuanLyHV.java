@@ -153,31 +153,31 @@ public class QuanLyHV extends Fragment {
                     txtTen.setError("Bạn không được để trống tên cấp đai");
                     return;
                 }
-                updateDotThi(idHV, name, donVi, capDai, date);
+                updateHV(idHV, name, donVi, capDai, date);
                 b.dismiss();
             }
         });
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteDotThi(idHV);
+                deleteHV(idHV);
                 b.dismiss();
             }
         });
     }
 
-    private boolean updateDotThi(String id, String name, String donVi, String capDai, String ngaySinh) {
+    private boolean updateHV(String id, String name, String donVi, String capDai, String ngaySinh) {
         //getting the specified artist reference
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("HocVien").child(id);
 
         //updating artist
-        HocVien hv = new HocVien(name, ngaySinh, donVi, capDai);
+        HocVien hv = new HocVien(id,name, ngaySinh, donVi, capDai);
         dR.setValue(hv);
         Toast.makeText(getContext(), "Học viên đã được cập nhật", Toast.LENGTH_LONG).show();
         return true;
     }
 
-    private boolean deleteDotThi(String id) {
+    private boolean deleteHV(String id) {
         //getting the specified artist reference
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("HocVien").child(id);
 

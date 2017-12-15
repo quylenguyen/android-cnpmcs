@@ -3,6 +3,7 @@ package com.example.quyle.appchamdiemvo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,9 +60,20 @@ public class TinhDiemFragment extends Fragment {
                 int n3 = Integer.parseInt(txtND3.getText().toString());
                 int n4 = Integer.parseInt(txtND4.getText().toString());
                 int n5 = Integer.parseInt(txtND5.getText().toString());
-                HocVien hv = new HocVien(id,name,ngaySinh,capDai,donVi,n1,n2,n3,n4,n5,0);
+                HocVien hv = new HocVien(id,name,ngaySinh,capDai,donVi,n1,n2,n3,n4,n5,(n1+n2+n3+n4+n5));
                 dbHV.child(id).setValue(hv);
                 Toast.makeText(getContext(),"Lưu Bài Thi Thành Công",Toast.LENGTH_LONG).show();
+                FragmentTransaction trans = getFragmentManager()
+                        .beginTransaction();
+                HocVienFragment hocvienFragment = new HocVienFragment();
+                trans.replace(R.id.root_frame, hocvienFragment);
+                trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                trans.addToBackStack(null);
+                trans.detach(hocvienFragment).attach(hocvienFragment);
+                trans.detach(hocvienFragment).attach(hocvienFragment);
+
+                trans.commit();
+
             }
         });
         return viewRoot;

@@ -15,6 +15,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import dmax.dialog.SpotsDialog;
+
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
 
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editTextEmail;
     private EditText editTextPassword;
     Boolean isAdmin;
+    SpotsDialog dialog;
 //    private TextView textViewSignup;
 
     //firebase auth object
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        dialog = new SpotsDialog(this);
         //getting firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -45,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        FirebaseUser user = firebaseAuth.getCurrentUser();
         if(firebaseAuth.getCurrentUser() != null){
             //close this activity
-            finish();
             if(firebaseAuth.getCurrentUser().getEmail().equals("admin@gmail.com")) {
                 isAdmin = true;
                 Intent i = new Intent(getApplicationContext(), A.class);
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //method for user login
     private void userLogin(){
+
         String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
 
@@ -95,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //if the email and password are not empty
         //displaying a progress dialog
-
+        dialog.show();
 
         //logging in the user
         firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -123,10 +127,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view == buttonSignIn){
             userLogin();
         }
-
-//        if(view == textViewSignup){
-//            finish();
-//            startActivity(new Intent(this, LoginActivity.class));
-//        }
     }
 }

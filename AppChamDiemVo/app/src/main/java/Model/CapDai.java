@@ -7,6 +7,7 @@ package Model;
 public class CapDai {
     public String id;
     public String _TenCapDai;
+    public String ngay;
     public CapDai() {
     }
 

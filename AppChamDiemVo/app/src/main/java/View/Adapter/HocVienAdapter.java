@@ -46,20 +46,29 @@ public class HocVienAdapter extends RecyclerView.Adapter<HocVienAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(HocVienAdapter.ViewHolder holder, int position) {
-        if(listener != null) {
+        if (listener != null) {
             holder.bind(lsHV.get(position), listener);
-        }
-        else
-            holder.bind1(lsHV.get(position),onLongClickHVListener);
+        } else
+            holder.bind1(lsHV.get(position), onLongClickHVListener);
     }
+
     @Override
     public int getItemCount() {
         return lsHV.size();
     }
 
+    public interface OnClickHVListener {
+        void onItemClick(HocVien hv);
+    }
+
+    public interface OnLongClickHVListener {
+        void onItemLongClick(HocVien hv);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView img;
-        private TextView txtTen,txtNgaySing,txtCapDai,txtDonVi;
+        private TextView txtTen, txtNgaySing, txtCapDai, txtDonVi;
+
         public ViewHolder(View itemView) {
             super(itemView);
             txtTen = itemView.findViewById(R.id.txtTen);
@@ -67,7 +76,8 @@ public class HocVienAdapter extends RecyclerView.Adapter<HocVienAdapter.ViewHold
             txtDonVi = itemView.findViewById(R.id.txtDonVi);
             txtCapDai = itemView.findViewById(R.id.txtCapDaiHienTai);
         }
-        public void bind(final HocVien hv,final OnClickHVListener onClickHVListener){
+
+        public void bind(final HocVien hv, final OnClickHVListener onClickHVListener) {
             txtDonVi.setText(hv._DonVi);
             txtCapDai.setText(hv._DaiHienTai);
             txtNgaySing.setText(hv._NgaySinh);
@@ -80,7 +90,7 @@ public class HocVienAdapter extends RecyclerView.Adapter<HocVienAdapter.ViewHold
             });
         }
 
-        public void bind1(final HocVien hv,final OnLongClickHVListener onLongClickHVListener){
+        public void bind1(final HocVien hv, final OnLongClickHVListener onLongClickHVListener) {
             txtDonVi.setText(hv._DonVi);
             txtCapDai.setText(hv._DaiHienTai);
             txtNgaySing.setText(hv._NgaySinh);
@@ -93,11 +103,5 @@ public class HocVienAdapter extends RecyclerView.Adapter<HocVienAdapter.ViewHold
             });
         }
     }
-    public interface OnClickHVListener{
-        void onItemClick(HocVien hv);
-    }
 
-    public interface OnLongClickHVListener{
-        void onItemLongClick(HocVien hv);
-    }
 }

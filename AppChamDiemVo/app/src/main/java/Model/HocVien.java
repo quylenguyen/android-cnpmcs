@@ -16,7 +16,7 @@ public class HocVien {
     public int _DiemNoiDung4;
     public int _DiemNoiDung5;
     public int _TongDiem;
-    public  Boolean ktCham;
+    public  int ktCham;
 
 
     public HocVien(String id, String _Ten, String _NgaySinh, String _DonVi, String _DaiHienTai, int _DiemNoiDung1, int _DiemNoiDung2, int _DiemNoiDung3, int _DiemNoiDung4, int _DiemNoiDung5, int _TongDiem) {
@@ -31,7 +31,7 @@ public class HocVien {
         this._DiemNoiDung5 = _DiemNoiDung5;
         this._TongDiem = _TongDiem;
         this.id = id;
-        this.ktCham = false;
+        this.ktCham = 0;
     }
 
     public HocVien() {

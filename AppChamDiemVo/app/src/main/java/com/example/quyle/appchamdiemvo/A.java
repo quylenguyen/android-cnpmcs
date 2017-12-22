@@ -18,10 +18,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import Model.Common;
 import View.Adapter.HomePagerAdapter;
 
 public class A extends AppCompatActivity
@@ -30,6 +32,7 @@ public class A extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private TabLayout tabLayout;
     private HomePagerAdapter adapter;
+    TextView txtName,txtEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +51,19 @@ public class A extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View headerView = navigationView.getHeaderView(0);
+        txtName = headerView.findViewById(R.id.txtName);
+        txtEmail = headerView.findViewById(R.id.txtEmail);
+        txtName.setText(Common.currentUser.Name);
+        txtEmail.setText(Common.currentUser.Email);
+
+
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.vp);
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() == null) {
-            //closing this activity
-            finish();
-            //starting login activity
-            startActivity(new Intent(this, MainActivity.class));
-        }
     }
 
     @Override
@@ -123,6 +126,7 @@ public class A extends AppCompatActivity
                     fragment = new QuanLyCapDai();
                     break;
                 case R.id.QLUser:
+                    fragment = new UserManagementFragment();
                     break;
             }
             transaction.replace(R.id.admin_root_frame, fragment);
@@ -154,15 +158,17 @@ public class A extends AppCompatActivity
             tabThree.setText("Admin");
             tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.person, 0, 0);
             tabLayout.getTabAt(0).setCustomView(tabThree);
-            TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
-            tabOne.setText("Chấm Điểm");
-            tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.school, 0, 0);
-            tabLayout.getTabAt(1).setCustomView(tabOne);
+
 
             TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
             tabTwo.setText("Kiến Thức");
             tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.info, 0, 0);
-            tabLayout.getTabAt(2).setCustomView(tabTwo);
+            tabLayout.getTabAt(1).setCustomView(tabTwo);
+
+            TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
+            tabOne.setText("Chấm Điểm");
+            tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.school, 0, 0);
+            tabLayout.getTabAt(2).setCustomView(tabOne);
         }else {
 
             TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
@@ -175,10 +181,7 @@ public class A extends AppCompatActivity
             tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.info, 0, 0);
             tabLayout.getTabAt(1).setCustomView(tabTwo);
         }
-
-
     }
-
     @Override
     protected void onDestroy() {
 

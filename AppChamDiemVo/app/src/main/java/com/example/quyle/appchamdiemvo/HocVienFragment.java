@@ -66,7 +66,7 @@ public class HocVienFragment extends Fragment {
                 adater = new HocVienAdapter(lsHV, new HocVienAdapter.OnClickHVListener() {
                     @Override
                     public void onItemClick(HocVien hv) {
-                        if (hv.ktCham == false) {
+                        if (hv.ktCham == 0) {
                             Bundle bundle = new Bundle();
                             bundle.putString("ID", hv.id);
                             bundle.putString("Ten", hv._Ten);
@@ -86,12 +86,12 @@ public class HocVienFragment extends Fragment {
                             trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                             trans.addToBackStack(null);
                             trans.commit();
-                            hv.ktCham = true;
+                            hv.ktCham = 1;
                             DatabaseReference dR = FirebaseDatabase.getInstance().getReference("HocVien").child(hv.id);
                             dR.setValue(hv);
 
                         }
-                        else {
+                        else if(hv.ktCham == 1) {
                             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
                             LayoutInflater inflater = getLayoutInflater();
                             final View dialogView = inflater.inflate(R.layout.dialog, null);

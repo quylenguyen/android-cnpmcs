@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:orientation="vertical"
+    android:padding="18dp"
     tools:context="com.example.quyle.appchamdiemvo.MainActivity">
     <ImageView
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
         android:paddingBottom="20dp"/>
     <LinearLayout
         android:layout_centerVertical="true"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:layout_editor_absoluteY="0dp"
@@ -31,12 +32,12 @@
             android:layout_gravity="center_horizontal" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/txtPhoneNumber"
             android:layout_width="match_parent"
             android:text=""
-            android:inputType="textEmailAddress"
+            android:inputType="phone"
             android:textColorHint="@color/colorPrimary"
-            android:hint="Email"
+            android:hint="Phone Number"
             android:textSize="20sp"
             android:textColor="@color/colorPrimary"
             android:layout_height="wrap_content"
@@ -46,12 +47,12 @@
             app:met_primaryColor="@color/colorPrimary"/> />
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/txtPass"
             android:layout_width="match_parent"
             android:text=""
             android:inputType="textEmailAddress"
             android:textColorHint="@color/colorPrimary"
-            android:hint="Mật khẩu"
+            android:hint="Password"
             android:textSize="20sp"
             android:textColor="@color/colorPrimary"
             android:layout_height="wrap_content"
@@ -59,15 +60,13 @@
             app:met_baseColor="@color/colorPrimary"
             app:met_floatingLabel="highlight"
             app:met_primaryColor="@color/colorPrimary"/>
-        <Button
-            android:id="@+id/buttonSignin"
+        <info.hoang8f.widget.FButton
+            android:id="@+id/buttonSign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:layout_gravity="center"
             android:text="Đăng Nhập" />
-
-
     </LinearLayout>
 
 </LinearLayout>

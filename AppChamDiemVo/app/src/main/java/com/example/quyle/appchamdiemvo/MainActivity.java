@@ -1,6 +1,7 @@
 package com.example.quyle.appchamdiemvo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -14,118 +15,95 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
+import Model.Common;
+import Model.User;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import dmax.dialog.SpotsDialog;
+import info.hoang8f.widget.FButton;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity {
 
 
     //defining views
-    private Button buttonSignIn;
-    private EditText editTextEmail;
-    private EditText editTextPassword;
+    private FButton buttonSignIn;
+    private MaterialEditText txtPassword;
+    private MaterialEditText txtPhoneNumber;
     Boolean isAdmin;
     SpotsDialog dialog;
-//    private TextView textViewSignup;
-
-    //firebase auth object
-    private FirebaseAuth firebaseAuth;
-
-    //progress dialog
-//    private ProgressBar progressBar;
-
+    FirebaseDatabase database;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dialog = new SpotsDialog(this);
-        //getting firebase auth object
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        //if the objects getcurrentuser method is not null
-        //means user is already logged in
-//        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(firebaseAuth.getCurrentUser() != null){
-            //close this activity
-            if(firebaseAuth.getCurrentUser().getEmail().equals("admin@gmail.com")) {
-                isAdmin = true;
-                Intent i = new Intent(getApplicationContext(), A.class);
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("isAdmin",isAdmin);
-                i.putExtras(bundle);
-                startActivity(i);
-
-            }
-            else{
-                isAdmin = false;
-                Intent i = new Intent(getApplicationContext(), A.class);
-                i.putExtra("isAdmin",isAdmin);
-                startActivity(i);
-            }
-        }
-
-        //initializing views
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        buttonSignIn = (Button) findViewById(R.id.buttonSignin);
-//        textViewSignup  = (TextView) findViewById(R.id.textViewSignUp);
+        //init view
+        txtPassword = findViewById(R.id.txtPass);
+        txtPhoneNumber = findViewById(R.id.txtPhoneNumber);
+        buttonSignIn = findViewById(R.id.buttonSign_in);
+        //init firebase
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("Users");
 
 
-
-        //attaching click listener
-        buttonSignIn.setOnClickListener(this);
-//        textViewSignup.setOnClickListener(this);
-    }
-
-    //method for user login
-    private void userLogin(){
-
-        String email = editTextEmail.getText().toString().trim();
-        String password  = editTextPassword.getText().toString().trim();
-
-
-        //checking if email and passwords are empty
-        if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Bạn chưa nhập email",Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Bạn chưa nhập mật khẩu",Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        //if the email and password are not empty
-        //displaying a progress dialog
-        dialog.show();
-
-        //logging in the user
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        buttonSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final SweetAlertDialog pDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                pDialog.setTitleText("Loading");
+                pDialog.setCancelable(true);
+                pDialog.show();
+                reference.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child(txtPhoneNumber.getText().toString()).exists()) {
+                            pDialog.dismiss();
+                            User user = dataSnapshot.child(txtPhoneNumber.getText().toString()).getValue(User.class);
+                            user.Phone = txtPhoneNumber.getText().toString();
+                            if (user.Pass.equals(txtPassword.getText().toString())) {
+                                Common.currentUser = user;
+                                if (user.Email.equals("admin@gmail.com")) {
+                                    isAdmin = true;
+                                    Intent i = new Intent(MainActivity.this, A.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putBoolean("isAdmin", isAdmin);
+                                    i.putExtras(bundle);
+                                    startActivity(i);
+                                    finish();
+                                } else {
+                                    isAdmin = false;
+                                    Intent i = new Intent(getApplicationContext(), A.class);
+                                    i.putExtra("isAdmin", isAdmin);
+                                    startActivity(i);
+                                    finish();
+                                }
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Sign in Failed", Toast.LENGTH_LONG).show();
+                            }
 
-                        //if the task is successfull
-                        if(task.isSuccessful()){
-                            //start the profile activity
-                            finish();
-                            if(firebaseAuth.getCurrentUser().getEmail().equals("admin@gmail.com"))
-                                startActivity(new Intent(getApplicationContext(), A.class));
-                            else
-                                //opening profile activity
-                                startActivity(new Intent(getApplicationContext(), A.class));
                         }
+                        else
+                            Toast.makeText(getApplicationContext(), "Tài khoản không tồn tại", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
                     }
                 });
+            }
+        });
 
     }
 
-    @Override
-    public void onClick(View view) {
-        if(view == buttonSignIn){
-            userLogin();
-        }
-    }
 }
